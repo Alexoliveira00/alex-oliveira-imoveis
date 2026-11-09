@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Troque pelo seu domínio quando registrar (ex.: https://alexoliveiraimoveis.com.br)
+// Domínio oficial (registrado no Registro.br em 2026-11-09)
 export default defineConfig({
-  site: 'https://alexoliveiraimoveis.com.br',
+  site: 'https://aoliveiracorretor.com.br',
 });
