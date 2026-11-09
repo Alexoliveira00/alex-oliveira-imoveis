@@ -6,7 +6,9 @@ import { SITE, waLink } from '../config';
 <Base titulo="Sobre">
   <section class="container sobre">
     <h1>Sobre mim</h1>
-    <p>Sou {SITE.nome}, corretor de imóveis credenciado no CRECI sob o número {SITE.creci}, atendendo {SITE.cidade} e região.</p>
+    <p>{SITE.creci
+      ? <>Sou {SITE.nome}, corretor de imóveis credenciado no CRECI sob o número {SITE.creci}, atendendo {SITE.cidade} e região.</>
+      : <>Sou {SITE.nome} e atendo {SITE.cidade} e região.</>}</p>
     <p>Antes do mercado imobiliário, trabalhei na gestão de comércio e restaurante, e aprendi ali que negócio bom é aquele em que as duas partes saem satisfeitas. É assim que eu conduzo cada compra, venda e locação: com transparência nos valores, documentação conferida e resposta rápida.</p>
     <p>Atendo quem quer comprar, vender ou alugar casas, apartamentos, terrenos e imóveis comerciais.</p>
     <a class="btn btn-whats" href={waLink('Olá, Alex! Vim pela página Sobre do site.')}><WhatsIcon /> Conversar no WhatsApp</a>

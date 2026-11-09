@@ -2,10 +2,10 @@
 export const SITE = {
   nome: 'Alex Oliveira',
   marca: 'Alex Oliveira Imóveis',
-  creci: '00000-F', // OBRIGATÓRIO: troque pelo seu número assim que sair
-  cidade: 'Sua Cidade – UF',
-  whatsapp: '5511999999999', // só números, com 55 + DDD
-  email: 'contato@alexoliveiraimoveis.com.br',
+  creci: '', // OBRIGATÓRIO preencher assim que sair (ex.: '123456-F'). Vazio = esconde as linhas de CRECI
+  cidade: 'Itanhaém – SP',
+  whatsapp: '5513996016676', // só números, com 55 + DDD
+  email: '', // preencher quando criar o e-mail do domínio. Vazio = esconde do rodapé
   instagram: 'alexoliveira.imoveis',
   descricao:
     'Corretor de imóveis. Compra, venda e locação de casas, apartamentos e terrenos, com atendimento do primeiro contato até a assinatura.',

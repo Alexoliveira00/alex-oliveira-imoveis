@@ -46,7 +46,7 @@ const ficha = [
           {ficha.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
         </dl>
         {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg)}><WhatsIcon /> Quero saber mais</a>}
-        <p class="creci-nota">Anunciado por {SITE.nome}, CRECI {SITE.creci}</p>
+        <p class="creci-nota">Anunciado por {SITE.nome}{SITE.creci && `, CRECI ${SITE.creci}`}</p>
       </aside>
     </div>
     <div class="descricao"><h2>Sobre o imóvel</h2><Content /></div>

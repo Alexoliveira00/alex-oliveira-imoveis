@@ -30,7 +30,7 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
 <body>
   <header class="topo">
     <div class="container">
-      <a class="logo" href="/"><Logo /><span>{SITE.nome}<small>CRECI {SITE.creci}</small></span></a>
+      <a class="logo" href="/"><Logo /><span>{SITE.nome}{SITE.creci && <small>CRECI {SITE.creci}</small>}</span></a>
       <nav class="menu" aria-label="Principal">
         <a href="/" aria-current={ativo('/')}>Início</a>
         <a href="/imoveis/" aria-current={ativo('/imoveis')}>Imóveis</a>
@@ -44,12 +44,12 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
       <div>
         <h3>{SITE.marca}</h3>
         <p>{SITE.descricao}</p>
-        <p class="creci">Corretor de imóveis – CRECI {SITE.creci}</p>
+        {SITE.creci && <p class="creci">Corretor de imóveis – CRECI {SITE.creci}</p>}
       </div>
       <div>
         <h3>Fale comigo</h3>
         <p><a href={waLink('Olá, Alex! Vim pelo site.')}>WhatsApp</a><br />
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
+        {SITE.email && <><a href={`mailto:${SITE.email}`}>{SITE.email}</a><br /></>}
         <a href={`https://instagram.com/${SITE.instagram}`}>@{SITE.instagram}</a></p>
       </div>
       <div>
