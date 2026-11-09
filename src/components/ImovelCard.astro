@@ -1,0 +1,24 @@
+---
+import { brl } from '../config';
+const { imovel } = Astro.props;
+const d = imovel.data;
+---
+<a class="card" href={`/imoveis/${imovel.id}/`} data-tipo={d.tipo} data-finalidade={d.finalidade}>
+  <div class="card-foto">
+    <img src={d.capa} alt={d.titulo} loading="lazy" width="600" height="400" />
+    <span class:list={['selo', { vendido: !d.disponivel }]}>
+      {d.disponivel ? d.finalidade : d.finalidade === 'Venda' ? 'Vendido' : 'Alugado'}
+    </span>
+  </div>
+  <div class="card-corpo">
+    <h3>{d.titulo}</h3>
+    <p class="local">{d.bairro}, {d.cidade}</p>
+    <ul class="ficha">
+      {d.quartos > 0 && <li>{d.quartos} {d.quartos === 1 ? 'quarto' : 'quartos'}</li>}
+      {d.banheiros > 0 && <li>{d.banheiros} {d.banheiros === 1 ? 'banheiro' : 'banheiros'}</li>}
+      {d.vagas > 0 && <li>{d.vagas} {d.vagas === 1 ? 'vaga' : 'vagas'}</li>}
+      <li>{d.area} m²</li>
+    </ul>
+    <p class="preco">{brl(d.preco)}{d.finalidade === 'Aluguel' && <small> /mês</small>}</p>
+  </div>
+</a>

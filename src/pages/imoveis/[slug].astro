@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import WhatsIcon from '../../components/WhatsIcon.astro';
+import { getCollection, render } from 'astro:content';
+import { SITE, waLink, brl } from '../../config';
+
+export async function getStaticPaths() {
+  const imoveis = await getCollection('imoveis');
+  return imoveis.map((imovel) => ({ params: { slug: imovel.id }, props: { imovel } }));
+}
+const { imovel } = Astro.props;
+const d = imovel.data;
+const { Content } = await render(imovel);
+const fotos = [d.capa, ...d.fotos];
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const msg = `Olá, Alex! Tenho interesse no imóvel "${d.titulo}" (${d.bairro}). ${url}`;
+const ficha = [
+  ['Tipo', d.tipo], ['Área', `${d.area} m²`],
+  d.quartos ? ['Quartos', d.quartos] : null,
+  d.banheiros ? ['Banheiros', d.banheiros] : null,
+  d.vagas ? ['Vagas', d.vagas] : null,
+].filter(Boolean) as [string, string | number][];
+---
+<Base titulo={d.titulo} descricao={`${d.tipo} para ${d.finalidade.toLowerCase()} em ${d.bairro}, ${d.cidade}. ${brl(d.preco)}.`} imagem={d.capa}>
+  <article class="container detalhe">
+    <a class="voltar" href="/imoveis/">Todos os imóveis</a>
+    <div class="cols">
+      <div class="galeria">
+        <img id="foto-principal" class="principal" src={fotos[0]} alt={d.titulo} width="1200" height="800" />
+        {fotos.length > 1 && (
+          <div class="miniaturas">
+            {fotos.map((f, i) => (
+              <button type="button" data-src={f} aria-label={`Ver foto ${i + 1}`} aria-pressed={i === 0 ? 'true' : 'false'}>
+                <img src={f} alt="" loading="lazy" width="160" height="107" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <aside class="resumo">
+        <p class="selo-texto">{d.disponivel ? d.finalidade : d.finalidade === 'Venda' ? 'Vendido' : 'Alugado'}</p>
+        <h1>{d.titulo}</h1>
+        <p class="local">{d.bairro}, {d.cidade}</p>
+        <p class="valor">{brl(d.preco)}{d.finalidade === 'Aluguel' && <small> /mês</small>}</p>
+        <dl class="tabela">
+          {ficha.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+        {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg)}><WhatsIcon /> Quero saber mais</a>}
+        <p class="creci-nota">Anunciado por {SITE.nome}, CRECI {SITE.creci}</p>
+      </aside>
+    </div>
+    <div class="descricao"><h2>Sobre o imóvel</h2><Content /></div>
+  </article>
+</Base>
+
+<script>
+  const principal = document.getElementById('foto-principal') as HTMLImageElement | null;
+  const botoes = document.querySelectorAll<HTMLButtonElement>('.miniaturas button');
+  botoes.forEach((b) => b.addEventListener('click', () => {
+    if (principal && b.dataset.src) principal.src = b.dataset.src;
+    botoes.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+</script>
+
+<style>
+  .detalhe { padding-top: 2rem; }
+  .voltar { display: inline-block; margin-bottom: 1.2rem; font-size: .95rem; }
+  .voltar::before { content: '‹ '; }
+  .cols { display: grid; gap: 2.5rem; grid-template-columns: 1.6fr 1fr; align-items: start; }
+  .principal { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 6px; background: var(--linha); }
+  .miniaturas { display: flex; gap: .6rem; margin-top: .7rem; overflow-x: auto; }
+  .miniaturas button { padding: 0; border: 2px solid transparent; border-radius: 4px; background: none; cursor: pointer; flex: none; width: 96px; }
+  .miniaturas button[aria-pressed='true'] { border-color: var(--dourado); }
+  .miniaturas img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 2px; }
+  .resumo { background: var(--branco); border: 1px solid var(--linha); border-top: 6px solid var(--marinho); border-radius: 6px; padding: 1.6rem; position: sticky; top: 1rem; }
+  .resumo h1 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+  .selo-texto { color: var(--dourado-escuro); font-weight: 600; margin: 0 0 .4rem; }
+  .local { color: var(--cinza); margin-top: -.3rem; }
+  .valor { font-family: var(--serif); font-size: 2rem; color: var(--marinho); margin: .6rem 0 1rem; }
+  .valor small { font-family: var(--sans); font-size: .95rem; color: var(--cinza); }
+  .tabela { margin: 0 0 1.4rem; }
+  .tabela div { display: flex; justify-content: space-between; padding: .55rem 0; border-bottom: 1px solid var(--linha); }
+  .tabela dt { color: var(--cinza); } .tabela dd { margin: 0; font-weight: 600; }
+  .largo { width: 100%; justify-content: center; }
+  .creci-nota { font-size: .85rem; color: var(--cinza); margin: 1rem 0 0; }
+  .descricao { margin-top: 3rem; max-width: 70ch; }
+  @media (max-width: 860px) { .cols { grid-template-columns: 1fr; } .resumo { position: static; } }
+</style>

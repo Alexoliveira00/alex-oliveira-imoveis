@@ -1,0 +1,41 @@
+# Painel de imóveis (Decap CMS). Acesse em seusite.com.br/admin
+backend:
+  name: github
+  repo: Alexoliveira00/alex-oliveira-imoveis   # nome do repositório no GitHub
+  branch: main
+
+locale: pt
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: imoveis
+    label: Imóveis
+    label_singular: Imóvel
+    folder: src/content/imoveis
+    create: true
+    slug: "{{slug}}"
+    identifier_field: titulo
+    summary: "{{titulo}} – {{bairro}} ({{finalidade}})"
+    sortable_fields: ['data', 'titulo', 'preco']
+    fields:
+      - { label: Título do anúncio, name: titulo, widget: string, hint: "Ex.: Casa térrea com quintal amplo" }
+      - { label: Finalidade, name: finalidade, widget: select, options: [Venda, Aluguel] }
+      - { label: Tipo, name: tipo, widget: select, options: [Casa, Apartamento, Terreno, Comercial, Chácara] }
+      - { label: "Preço (só números; aluguel = valor mensal)", name: preco, widget: number, value_type: int }
+      - { label: Bairro, name: bairro, widget: string }
+      - { label: Cidade, name: cidade, widget: string }
+      - { label: Quartos, name: quartos, widget: number, value_type: int, default: 0 }
+      - { label: Banheiros, name: banheiros, widget: number, value_type: int, default: 0 }
+      - { label: Vagas de garagem, name: vagas, widget: number, value_type: int, default: 0 }
+      - { label: "Área (m²)", name: area, widget: number, value_type: int }
+      - { label: Foto de capa, name: capa, widget: image }
+      - label: Mais fotos
+        name: fotos
+        widget: list
+        required: false
+        field: { label: Foto, name: foto, widget: image }
+      - { label: Mostrar na página inicial, name: destaque, widget: boolean, default: false }
+      - { label: "Disponível (desmarque quando vender/alugar)", name: disponivel, widget: boolean, default: true }
+      - { label: Data do anúncio, name: data, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: Descrição, name: body, widget: markdown }

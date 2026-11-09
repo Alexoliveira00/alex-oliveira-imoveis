@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import ImovelCard from '../../components/ImovelCard.astro';
+import { getCollection } from 'astro:content';
+
+const imoveis = (await getCollection('imoveis')).sort(
+  (a, b) => Number(b.data.disponivel) - Number(a.data.disponivel) || +b.data.data - +a.data.data
+);
+const tipos = [...new Set(imoveis.map((i) => i.data.tipo))];
+---
+<Base titulo="Imóveis à venda e para alugar">
+  <section class="container pagina">
+    <h1>Imóveis</h1>
+    <form class="filtros" onsubmit="return false" aria-label="Filtrar imóveis">
+      <label>Finalidade
+        <select id="f-finalidade"><option value="">Venda e aluguel</option><option>Venda</option><option>Aluguel</option></select>
+      </label>
+      <label>Tipo
+        <select id="f-tipo"><option value="">Todos os tipos</option>{tipos.map((t) => <option>{t}</option>)}</select>
+      </label>
+    </form>
+    <p id="contagem" class="contagem" aria-live="polite"></p>
+    <div class="grade" id="lista">
+      {imoveis.map((imovel) => <ImovelCard imovel={imovel} />)}
+    </div>
+    <p id="vazio" class="vazio" hidden>Nenhum imóvel com esse filtro agora. Me chame no WhatsApp que eu procuro para você.</p>
+  </section>
+</Base>
+
+<script>
+  const fin = document.getElementById('f-finalidade') as HTMLSelectElement;
+  const tipo = document.getElementById('f-tipo') as HTMLSelectElement;
+  const cards = [...document.querySelectorAll<HTMLElement>('#lista .card')];
+  const contagem = document.getElementById('contagem')!;
+  const vazio = document.getElementById('vazio')!;
+  function filtrar() {
+    let n = 0;
+    for (const c of cards) {
+      const ok = (!fin.value || c.dataset.finalidade === fin.value) && (!tipo.value || c.dataset.tipo === tipo.value);
+      c.hidden = !ok; if (ok) n++;
+    }
+    contagem.textContent = `${n} ${n === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}`;
+    vazio.hidden = n > 0;
+  }
+  fin.addEventListener('change', filtrar); tipo.addEventListener('change', filtrar); filtrar();
+</script>
+
+<style>
+  .pagina { padding-top: 3rem; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0 .5rem; }
+  .filtros label { display: flex; flex-direction: column; gap: .3rem; font-size: .9rem; color: var(--cinza); }
+  .filtros select { font: inherit; color: var(--grafite); padding: .65rem .8rem; border: 1px solid var(--linha); border-radius: 4px; background: var(--branco); min-width: 200px; }
+  .contagem { color: var(--cinza); font-size: .95rem; margin-bottom: 1.5rem; }
+  .vazio { background: var(--branco); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--linha); }
+  :global(.card[hidden]) { display: none; }
+</style>
