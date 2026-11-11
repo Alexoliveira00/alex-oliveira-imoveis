@@ -2,9 +2,9 @@
 titulo: Casa Com 2 quartos, nova aceita financiamento
 finalidade: Venda
 tipo: Casa
-preco: 330
+preco: 330000
 bairro: Tupy
-cidade: Itanhaém SP
+cidade: Itanhaém – SP
 quartos: 2
 banheiros: 3
 vagas: 2
@@ -33,10 +33,10 @@ Se você procura o imóvel perfeito para morar ou curtir momentos inesquecíveis
 
 Esta belíssima residência destaca-se pela sua excelente distribuição de espaços e por uma área de lazer privativa completa.  
 
-Marcador Ambientes Internos: A casa conta com salas amplas e bem iluminadas, cozinha funcional e 2 dormitórios aconchegantes. Para maior comodidade da sua família e visitas, a residência dispõe de 3 banheiros.  
+- **Ambientes Internos:** A casa conta com salas amplas e bem iluminadas, cozinha funcional e 2 dormitórios aconchegantes. Para maior comodidade da sua família e visitas, a residência dispõe de 3 banheiros.  
 
-Marcador Área Externa e Lazer: O grande destaque do imóvel é sua área de lazer privativa, composta por uma linda piscina perfeita para os dias quentes e uma área gourmet ideal para churrascos e reuniões com amigos e familiares.  
+- **Área Externa e Lazer:** O grande destaque do imóvel é sua área de lazer privativa, composta por uma linda piscina perfeita para os dias quentes e uma área gourmet ideal para churrascos e reuniões com amigos e familiares.  
 
-Marcador Garagem: Vaga espaçosa para até 2 veículos com total segurança.  
+- **Garagem:** Vaga espaçosa para até 2 veículos com total segurança.  
 
 Agende já sua visita e venha conhecer seu novo lar!
