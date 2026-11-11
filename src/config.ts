@@ -2,6 +2,8 @@
 export const SITE = {
   nome: 'Alex Oliveira',
   marca: 'Alex Oliveira Imóveis',
+  subtitulo: 'Negócios Imobiliários', // aparece abaixo do nome no cabeçalho
+  slogan: 'Seu próximo imóvel está aqui', // título do topo da página inicial
   creci: '', // OBRIGATÓRIO preencher assim que sair (ex.: '123456-F'). Vazio = esconde as linhas de CRECI
   cidade: 'Itanhaém – SP',
   whatsapp: '5513996016676', // só números, com 55 + DDD

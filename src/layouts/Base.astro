@@ -22,15 +22,15 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
   <meta property="og:description" content={descricao} />
   <meta property="og:image" content={new URL(imagem, Astro.site)} />
   <meta property="og:locale" content="pt_BR" />
-  <meta name="theme-color" content="#1F2A44" />
+  <meta name="theme-color" content="#141414" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="topo">
     <div class="container">
-      <a class="logo" href="/"><Logo /><span>{SITE.nome}{SITE.creci && <small>CRECI {SITE.creci}</small>}</span></a>
+      <a class="logo" href="/"><Logo /><span>{SITE.nome}<span class="sub">{SITE.subtitulo}</span>{SITE.creci && <small>CRECI {SITE.creci}</small>}</span></a>
       <nav class="menu" aria-label="Principal">
         <a href="/" aria-current={ativo('/')}>Início</a>
         <a href="/imoveis/" aria-current={ativo('/imoveis')}>Imóveis</a>

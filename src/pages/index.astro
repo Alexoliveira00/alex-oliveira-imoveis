@@ -13,7 +13,8 @@ const capa = destaques[0]?.data.capa ?? '/uploads/exemplo-1.svg';
   <section class="hero">
     <div class="container hero-grade">
       <div>
-        <h1>Casa, apartamento ou terreno em {SITE.cidade}.</h1>
+        <p class="hero-local">Casas, apartamentos e terrenos em {SITE.cidade}</p>
+        <h1>{SITE.slogan}</h1>
         <p class="hero-texto">Eu faço a busca, marco as visitas e acompanho a documentação até a entrega das chaves.</p>
         <div class="acoes">
           <a class="btn btn-whats" href={waLink('Olá, Alex! Estou procurando um imóvel.')}><WhatsIcon /> Chamar no WhatsApp</a>
@@ -57,28 +58,28 @@ const capa = destaques[0]?.data.capa ?? '/uploads/exemplo-1.svg';
 </Base>
 
 <style>
-  .hero { background: var(--marinho); color: var(--papel); padding-block: 2.5rem 4rem; position: relative; }
-  .hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4rem; background: var(--papel); }
-  .hero-grade { display: grid; gap: 2.5rem; grid-template-columns: 1.05fr 1fr; align-items: center; position: relative; z-index: 1; }
-  .hero h1 { color: var(--papel); }
-  .hero-texto { font-size: 1.2rem; color: #D9D4CA; max-width: 40ch; }
+  .hero { background: var(--preto); padding-block: 3rem 4rem; border-bottom: 1px solid var(--linha); }
+  .hero-grade { display: grid; gap: 3rem; grid-template-columns: 1.05fr 1fr; align-items: center; }
+  .hero-local { color: var(--texto-suave); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
+  .hero h1 { color: var(--dourado); }
+  .hero h1::after { content: ""; display: block; width: 72px; height: 2px; background: var(--dourado-escuro); margin-top: 1.2rem; }
+  .hero-texto { font-size: 1.1rem; color: var(--marfim); max-width: 40ch; }
   .acoes { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
-  .btn-claro { color: var(--papel); box-shadow: inset 0 0 0 1.5px var(--papel); }
-  .btn-claro:hover { background: var(--papel); color: var(--marinho); }
-  .hero-foto { margin: 0; border-radius: 6px; overflow: hidden; border-bottom: 6px solid var(--dourado); transform: translateY(3rem); }
+  .btn-claro { color: var(--dourado); box-shadow: inset 0 0 0 1.5px var(--dourado); }
+  .btn-claro:hover { background: var(--dourado); color: var(--preto); }
+  .hero-foto { margin: 0; border-radius: 6px; overflow: hidden; border: 1px solid var(--dourado-escuro); }
   .hero-foto img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
   .bloco { margin-top: 5rem; }
   .titulo-linha { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .titulo-linha h2 { margin: 0; }
-  .passos { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); counter-reset: passo; }
-  .passos li { counter-increment: passo; border-top: 2px solid var(--dourado); padding-top: 1rem; }
-  .passos li h3::before { content: counter(passo) '. '; color: var(--dourado-escuro); }
-  .chamada { background: var(--branco); border: 1px solid var(--linha); border-left: 6px solid var(--dourado); border-radius: 6px; padding: 2rem; display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-  .chamada p { margin: 0; }
+  .passos { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); counter-reset: passo; }
+  .passos li { counter-increment: passo; border-top: 2px solid var(--dourado-escuro); padding-top: 1rem; }
+  .passos li h3::before { content: counter(passo) ". "; color: var(--dourado); }
+  .passos li p { color: var(--texto-suave); }
+  .chamada { background: var(--superficie); border: 1px solid var(--linha); border-left: 4px solid var(--dourado); border-radius: 6px; padding: 2rem; display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .chamada p { margin: 0; color: var(--texto-suave); }
   @media (max-width: 820px) {
-    .hero-grade { grid-template-columns: 1fr; }
-    .hero-foto { transform: none; }
-    .hero::after { display: none; }
-    .hero { padding-bottom: 2.5rem; }
+    .hero-grade { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { padding-block: 2rem 2.5rem; }
   }
 </style>
