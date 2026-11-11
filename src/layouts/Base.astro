@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import WhatsIcon from '../components/WhatsIcon.astro';
 import { SITE, waLink } from '../config';
-const { titulo, descricao = SITE.descricao, imagem = '/uploads/exemplo-1.svg' } = Astro.props;
+const { titulo, descricao = SITE.descricao, imagem = '/icone-512.png' } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | ${SITE.marca}` : `${SITE.marca} – Corretor de imóveis em ${SITE.cidade}`;
 const caminho = Astro.url.pathname;
 const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p)) ? 'page' : undefined;
@@ -15,7 +15,8 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{tituloCompleto}</title>
   <meta name="description" content={descricao} />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="canonical" href={new URL(caminho, Astro.site)} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={tituloCompleto} />
