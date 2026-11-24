@@ -1,4 +1,4 @@
-# Projeto: Alex Oliveira Imóveis
+# Projeto: Oliveira's Imobiliária (site do corretor Alex Oliveira)
 
 Site do corretor Alex Oliveira (generalista: compra, venda e locação). Responda sempre em português.
 
@@ -14,11 +14,12 @@ Site do corretor Alex Oliveira (generalista: compra, venda e locação). Respond
 - Tons de apoio derivados: superfície #1C1C1C (cards/rodapé), superfície-2 #242424, texto suave #A8A195, linha #34302A
 - Fontes: Cinzel (títulos) e Montserrat (texto), via Google Fonts em `Base.astro`
 - Tokens em `src/styles/global.css` (`--preto`, `--dourado`, `--dourado-escuro`, `--marfim`, `--fonte-titulo`, `--fonte-texto`…); componentes usam só as variáveis, nada de cor solta
-- Slogan "Seu próximo imóvel está aqui" (título do topo da home) e subtítulo "Negócios Imobiliários" (abaixo do nome no cabeçalho) ficam em `src/config.ts`
+- Nome da marca (desde 2026-11-24): "Oliveira's Imobiliária". No cabeçalho: `nome` "Oliveira's" + `subtitulo` "Imobiliária"; `marca` = nome completo (aba, Google, rodapé); `corretor` = "Alex Oliveira" (página Sobre e "Anunciado por", junto do CRECI, que é da pessoa). Tudo em `src/config.ts`. As mensagens de WhatsApp continuam "Olá, Alex!".
+- Slogan "Seu próximo imóvel está aqui" (título do topo da home) fica em `src/config.ts`
 - Estilo elegante e sóbrio
-- Logo oficial (desde 2026-11-11): monograma "AO" dourado com casa e prédios, fundo #141414 (igual ao do site, por isso não tem transparência e não precisa).
-  Arquivos em `public/`: `logo-ao.png` (cabeçalho, recorte 300x155), `favicon.png` (64), `apple-touch-icon.png` (180), `icone-512.png` (imagem padrão de compartilhamento/og:image).
-  Original em alta: `C:\Users\alexo\alexcorretor\logo\logo-original.jpeg` (1080x1080). Se o fundo do site mudar de cor, refazer os recortes.
+- Logo oficial (desde 2026-11-24): monograma "OI" dourado (casa dentro do O, I em forma de prédio, arco atravessando), fundo #141414 (igual ao do site, sem transparência).
+  Arquivos em `public/`: `logo-oi.png` (cabeçalho, recorte 600x375), `favicon.png` (64), `apple-touch-icon.png` (180), `icone-512.png` (imagem padrão de compartilhamento/og:image).
+  Fonte editável (SVG, fonte Playfair Display 700): `C:\Users\alexo\alexcorretor\logo\logo-oi.html`; renders em alta na mesma pasta. A logo antiga "AO" está em `logo\antigo\logo-ao-dourado\`. Se o fundo do site mudar de cor, refazer os recortes.
 
 ## Contraste (sobre o fundo #141414)
 - Marfim ~15:1, dourado ~7,6:1, texto suave ~7:1 → OK para qualquer texto

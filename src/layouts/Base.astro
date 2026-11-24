@@ -4,7 +4,7 @@ import Logo from '../components/Logo.astro';
 import WhatsIcon from '../components/WhatsIcon.astro';
 import { SITE, waLink } from '../config';
 const { titulo, descricao = SITE.descricao, imagem = '/icone-512.png' } = Astro.props;
-const tituloCompleto = titulo ? `${titulo} | ${SITE.marca}` : `${SITE.marca} – Corretor de imóveis em ${SITE.cidade}`;
+const tituloCompleto = titulo ? `${titulo} | ${SITE.marca}` : `${SITE.marca} – Imóveis em ${SITE.cidade}`;
 const caminho = Astro.url.pathname;
 const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p)) ? 'page' : undefined;
 ---
