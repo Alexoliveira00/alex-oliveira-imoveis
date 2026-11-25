@@ -1,13 +1,13 @@
-# Projeto: Oliveira's Imobiliária (site dos corretores Alex Oliveira e Giselly Oliveira)
+# Projeto: Alex Oliveira & Giselly Oliveira – Corretores de Imóveis
 
-Site da Oliveira's Imobiliária, com dois corretores: Alex Oliveira e Giselly Oliveira (generalista: compra, venda e locação). No ar em https://aoliveiracorretor.com.br (push na `main` = publica na Netlify). Responda sempre em português.
+Site dos corretores Alex Oliveira e Giselly Oliveira (generalista: compra, venda e locação). Textos do site na 1ª pessoa do plural ("nós"). No ar em https://aoliveiracorretor.com.br (push na `main` = publica na Netlify). Responda sempre em português.
 
 ## Stack
 - Astro 5 (site estático) — páginas em `src/pages`, layout em `src/layouts/Base.astro`
 - Imóveis são arquivos Markdown em `src/content/imoveis/` (schema em `src/content.config.ts`)
 - Painel Decap CMS em `public/admin/` (config.yml precisa espelhar o schema)
 - Hospedagem: Netlify (grátis), build `npm run build`, saída `dist`
-- Dados da imobiliária (`SITE`: nome, cidade, e-mail, Instagram) e dos corretores (`CORRETORES`) centralizados em `src/config.ts`
+- Dados da marca (`SITE`: nome, cidade, e-mail, Instagram) e dos corretores (`CORRETORES`) centralizados em `src/config.ts`
 
 ## Corretores (desde 2026-11-25)
 - `CORRETORES` em `src/config.ts` é uma lista; cada um tem `id`, `nome`, `creci`, `whatsapp` e `bio` (opcional, aparece na página Sobre).
@@ -23,12 +23,12 @@ Site da Oliveira's Imobiliária, com dois corretores: Alex Oliveira e Giselly Ol
 - Tons de apoio derivados: superfície #1C1C1C (cards/rodapé), superfície-2 #242424, texto suave #A8A195, linha #34302A
 - Fontes: Cinzel (títulos) e Montserrat (texto), via Google Fonts em `Base.astro`
 - Tokens em `src/styles/global.css` (`--preto`, `--dourado`, `--dourado-escuro`, `--marfim`, `--fonte-titulo`, `--fonte-texto`…); componentes usam só as variáveis, nada de cor solta
-- Nome da marca (desde 2026-11-24): "Oliveira's Imobiliária". No cabeçalho: `nome` "Oliveira's" + `subtitulo` "Imobiliária"; `marca` = nome completo (aba, Google, rodapé). Tudo em `src/config.ts`. O CRECI é de cada pessoa, por isso fica em `CORRETORES`, não na marca.
+- Nome da marca (desde 2026-11-25, igual à logo completa): "Alex Oliveira & Giselly Oliveira – Corretores de Imóveis". No cabeçalho: `nome` "Alex & Giselly Oliveira" + `subtitulo` "Corretores de Imóveis"; `marca` "Alex Oliveira & Giselly Oliveira" (aba, Google, rodapé). Tudo em `src/config.ts`. O CRECI é de cada pessoa, por isso fica em `CORRETORES`, não na marca. Não usar "Imobiliária" (exige CRECI de pessoa jurídica). Histórico: 2026-11-24 a 25 foi "Oliveira's Imobiliária", antes "Alex Oliveira".
 - Slogan "Seu próximo imóvel está aqui" (título do topo da home) fica em `src/config.ts`
 - Estilo elegante e sóbrio
-- Logo oficial (desde 2026-11-24): monograma "OI" dourado (casa dentro do O, I em forma de prédio, arco atravessando), fundo #141414 (igual ao do site, sem transparência).
-  Arquivos em `public/`: `logo-oi.png` (cabeçalho, recorte 600x375), `favicon.png` (64), `apple-touch-icon.png` (180), `icone-512.png` (imagem padrão de compartilhamento/og:image).
-  Fonte editável (SVG, fonte Playfair Display 700): `C:\Users\alexo\alexcorretor\logo\logo-oi.html`; renders em alta na mesma pasta. A logo antiga "AO" está em `logo\antigo\logo-ao-dourado\`. Se o fundo do site mudar de cor, refazer os recortes.
+- Logo oficial (desde 2026-11-25, feita fora e recebida em JPEG; não redesenhar): monograma "O" dourado com telhado de casa, prédios dentro e arco; e a logo completa com "ALEX OLIVEIRA & GISELLY OLIVEIRA – CORRETORES DE IMÓVEIS". Fundo dos arquivos = #141414 exato (igual ao do site, sem transparência).
+  Arquivos em `public/`: `logo-monograma.png` (cabeçalho, recorte 600x378), `favicon.png` (64), `apple-touch-icon.png` (180), `icone-512.png` (monograma quadrado), `logo-completa.jpg` (1400x870: imagem padrão de compartilhamento/og:image e topo da página Sobre).
+  Originais em `C:\Users\alexo\alexcorretor\logo\`: `monograma-original.jpeg` (1080x1080) e `logo-completa-original.jpeg`; não há SVG (para impressão grande, pedir o vetor a quem fez). Logos antigas em `logo\antigo\` (`logo-oi\`, `logo-ao-dourado\`). Se o fundo do site mudar de cor, refazer os recortes.
 
 ## Contraste (sobre o fundo #141414)
 - Marfim ~15:1, dourado ~7,6:1, texto suave ~7:1 → OK para qualquer texto
@@ -44,6 +44,6 @@ Site da Oliveira's Imobiliária, com dois corretores: Alex Oliveira e Giselly Ol
 
 ## Pendências
 - Preencher CRECI do Alex e CRECI + WhatsApp da Giselly em `CORRETORES`
-- Trocar a logo do cabeçalho por `logo/cabecalho-site-fundo-escuro.svg` e o favicon por `logo/favicon.svg` (arquivos ainda não recebidos)
+- Pedir os arquivos vetoriais (SVG) da logo nova a quem fez, para impressão
 - E-mail do domínio (contato@aoliveiracorretor.com.br)
 - Instagram: bio, templates de post nas cores da marca, posts semanais

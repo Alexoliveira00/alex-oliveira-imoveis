@@ -1,14 +1,14 @@
 // ===== EDITE AQUI: seus dados aparecem no site inteiro =====
 export const SITE = {
-  nome: "Oliveira's", // 1ª linha do nome no cabeçalho
-  subtitulo: 'Imobiliária', // 2ª linha do nome no cabeçalho
-  marca: "Oliveira's Imobiliária", // nome completo: título da aba, Google, rodapé
+  nome: 'Alex & Giselly Oliveira', // 1ª linha do nome no cabeçalho
+  subtitulo: 'Corretores de Imóveis', // 2ª linha do nome no cabeçalho
+  marca: 'Alex Oliveira & Giselly Oliveira', // nome completo: título da aba, Google, rodapé
   slogan: 'Seu próximo imóvel está aqui', // título do topo da página inicial
   cidade: 'Itanhaém – SP',
   email: '', // preencher quando criar o e-mail do domínio. Vazio = esconde do rodapé
   instagram: 'alexoliveira.imoveis',
   descricao:
-    'Imobiliária em Itanhaém – SP. Compra, venda e locação de casas, apartamentos e terrenos, com atendimento do primeiro contato até a assinatura.',
+    'Corretores de imóveis em Itanhaém – SP. Compra, venda e locação de casas, apartamentos e terrenos, com atendimento do primeiro contato até a assinatura.',
 };
 
 // ===== CORRETORES =====
