@@ -37,5 +37,12 @@ collections:
         field: { label: Foto, name: foto, widget: image }
       - { label: Mostrar na página inicial, name: destaque, widget: boolean, default: false }
       - { label: "Disponível (desmarque quando vender/alugar)", name: disponivel, widget: boolean, default: true }
+      - label: Corretor responsável
+        name: corretor
+        widget: select
+        default: alex
+        options:   # mesmos ids de CORRETORES em src/config.ts
+          - { label: Alex Oliveira, value: alex }
+          - { label: Giselly Oliveira, value: giselly }
       - { label: Data do anúncio, name: data, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
       - { label: Descrição, name: body, widget: markdown }

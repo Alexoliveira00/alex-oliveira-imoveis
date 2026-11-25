@@ -1,21 +1,32 @@
 ---
 import Base from '../layouts/Base.astro';
 import WhatsIcon from '../components/WhatsIcon.astro';
-import { SITE, waLink } from '../config';
+import { SITE, CORRETORES, waLink, primeiroNome } from '../config';
 ---
 <Base titulo="Sobre">
   <section class="container sobre">
-    <h1>Sobre mim</h1>
-    <p>{SITE.creci
-      ? <>Sou {SITE.corretor}, corretor de imóveis credenciado no CRECI sob o número {SITE.creci}, atendendo {SITE.cidade} e região.</>
-      : <>Sou {SITE.corretor} e atendo {SITE.cidade} e região.</>}</p>
-    <p>Antes do mercado imobiliário, trabalhei na gestão de comércio e restaurante, e aprendi ali que negócio bom é aquele em que as duas partes saem satisfeitas. É assim que eu conduzo cada compra, venda e locação: com transparência nos valores, documentação conferida e resposta rápida.</p>
-    <p>Atendo quem quer comprar, vender ou alugar casas, apartamentos, terrenos e imóveis comerciais.</p>
-    <a class="btn btn-whats" href={waLink('Olá, Alex! Vim pela página Sobre do site.')}><WhatsIcon /> Conversar no WhatsApp</a>
+    <h1>Sobre nós</h1>
+    <p>A {SITE.marca} é formada por {CORRETORES.map((c) => c.nome).join(' e ')}, e atende {SITE.cidade} e região.</p>
+    <p>Negócio bom é aquele em que as duas partes saem satisfeitas. É assim que conduzimos cada compra, venda e locação: com transparência nos valores, documentação conferida e resposta rápida.</p>
+    <p>Atendemos quem quer comprar, vender ou alugar casas, apartamentos, terrenos e imóveis comerciais.</p>
+    <div class="equipe">
+      {CORRETORES.map((c) => (
+        <div class="pessoa">
+          <h2>{c.nome}</h2>
+          {c.creci && <p class="creci">CRECI {c.creci}</p>}
+          {'bio' in c && c.bio && <p>{c.bio}</p>}
+          {c.whatsapp && <a class="btn btn-whats" href={waLink(`Olá, ${primeiroNome(c)}! Vim pela página Sobre do site.`, c)}><WhatsIcon /> Falar com {primeiroNome(c)}</a>}
+        </div>
+      ))}
+    </div>
   </section>
 </Base>
 <style>
-  .sobre { padding-top: 3rem; max-width: 720px; }
-  .sobre p { font-size: 1.1rem; }
-  .sobre .btn { margin-top: 1rem; }
+  .sobre { padding-top: 3rem; max-width: 880px; }
+  .sobre > p { font-size: 1.1rem; max-width: 720px; }
+  .equipe { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); margin-top: 2rem; }
+  .pessoa { background: var(--superficie); border: 1px solid var(--linha); border-top: 4px solid var(--dourado); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; }
+  .pessoa h2 { font-size: 1.4rem; margin: 0 0 .3rem; }
+  .pessoa .creci { color: var(--texto-suave); font-size: .9rem; margin: 0 0 .6rem; }
+  .pessoa .btn { margin-top: auto; align-self: flex-start; }
 </style>

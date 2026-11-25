@@ -4,7 +4,8 @@ Site estático (Astro) + painel para cadastrar imóveis (Decap CMS).
 Custo: só o domínio (~R$ 40/ano no Registro.br). Hospedagem grátis na Netlify.
 
 ## 1. Antes de tudo: seus dados
-Edite `src/config.ts`: CRECI, WhatsApp (55 + DDD + número), cidade, e-mail e Instagram.
+Edite `src/config.ts`: em `SITE`, cidade, e-mail e Instagram; em `CORRETORES`, nome, CRECI e WhatsApp (55 + DDD + número) de cada corretor.
+No painel, cada imóvel tem o campo "Corretor responsável"; quem for escolhido aparece no anúncio com CRECI e WhatsApp.
 No `astro.config.mjs`, troque o `site` pelo seu domínio.
 
 ## 2. Subir pro GitHub

@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { CORRETOR_IDS } from './config';
 
 const imoveis = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/imoveis' }),
@@ -19,6 +20,7 @@ const imoveis = defineCollection({
     destaque: z.boolean().default(false),
     disponivel: z.boolean().default(true),
     data: z.coerce.date(),
+    corretor: z.enum(CORRETOR_IDS).default(CORRETOR_IDS[0]), // id de src/config.ts (CORRETORES)
   }),
 });
 

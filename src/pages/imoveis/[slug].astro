@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import WhatsIcon from '../../components/WhatsIcon.astro';
 import { getCollection, render } from 'astro:content';
-import { SITE, waLink, brl } from '../../config';
+import { waLink, brl, corretorPorId, primeiroNome } from '../../config';
 
 export async function getStaticPaths() {
   const imoveis = await getCollection('imoveis');
@@ -13,7 +13,8 @@ const d = imovel.data;
 const { Content } = await render(imovel);
 const fotos = [d.capa, ...d.fotos];
 const url = new URL(Astro.url.pathname, Astro.site).href;
-const msg = `Olá, Alex! Tenho interesse no imóvel "${d.titulo}" (${d.bairro}). ${url}`;
+const corretor = corretorPorId(d.corretor);
+const msg = `Olá, ${primeiroNome(corretor)}! Tenho interesse no imóvel "${d.titulo}" (${d.bairro}). ${url}`;
 const ficha = [
   ['Tipo', d.tipo], ['Área', `${d.area} m²`],
   d.quartos ? ['Quartos', d.quartos] : null,
@@ -45,8 +46,12 @@ const ficha = [
         <dl class="tabela">
           {ficha.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
         </dl>
-        {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg)}><WhatsIcon /> Quero saber mais</a>}
-        <p class="creci-nota">Anunciado por {SITE.corretor}{SITE.creci && `, CRECI ${SITE.creci}`}</p>
+        <div class="corretor">
+          <p class="corretor-rotulo">Responsável pelo anúncio</p>
+          <p class="corretor-nome">{corretor.nome}</p>
+          {corretor.creci && <p class="corretor-creci">CRECI {corretor.creci}</p>}
+        </div>
+        {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg, corretor)}><WhatsIcon /> Falar com {primeiroNome(corretor)}</a>}
       </aside>
     </div>
     <div class="descricao"><h2>Sobre o imóvel</h2><Content /></div>
@@ -67,6 +72,7 @@ const ficha = [
   .voltar { display: inline-block; margin-bottom: 1.2rem; font-size: .95rem; }
   .voltar::before { content: '‹ '; }
   .cols { display: grid; gap: 2.5rem; grid-template-columns: 1.6fr 1fr; align-items: start; }
+  .galeria { min-width: 0; } /* sem isso a fileira de miniaturas estica a coluna e a foto sai da tela */
   .principal { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 6px; background: var(--superficie-2); }
   .miniaturas { display: flex; gap: .6rem; margin-top: .7rem; overflow-x: auto; }
   .miniaturas button { padding: 0; border: 2px solid transparent; border-radius: 4px; background: none; cursor: pointer; flex: none; width: 96px; }
@@ -82,7 +88,11 @@ const ficha = [
   .tabela div { display: flex; justify-content: space-between; padding: .55rem 0; border-bottom: 1px solid var(--linha); }
   .tabela dt { color: var(--texto-suave); } .tabela dd { margin: 0; font-weight: 600; }
   .largo { width: 100%; justify-content: center; }
-  .creci-nota { font-size: .85rem; color: var(--texto-suave); margin: 1rem 0 0; }
+  .corretor { margin: 0 0 1.2rem; }
+  .corretor p { margin: 0; }
+  .corretor-rotulo { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--texto-suave); }
+  .corretor-nome { font-family: var(--fonte-titulo); font-weight: 600; font-size: 1.15rem; color: var(--marfim); margin-top: .25rem !important; }
+  .corretor-creci { font-size: .85rem; color: var(--texto-suave); }
   .descricao { margin-top: 3rem; max-width: 70ch; }
   @media (max-width: 860px) { .cols { grid-template-columns: 1fr; } .resumo { position: static; } }
 </style>

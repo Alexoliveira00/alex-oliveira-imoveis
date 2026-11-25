@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import WhatsIcon from '../components/WhatsIcon.astro';
-import { SITE, waLink } from '../config';
+import { SITE, CORRETORES, waLink, primeiroNome } from '../config';
 const { titulo, descricao = SITE.descricao, imagem = '/icone-512.png' } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | ${SITE.marca}` : `${SITE.marca} – Imóveis em ${SITE.cidade}`;
 const caminho = Astro.url.pathname;
@@ -31,7 +31,7 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
 <body>
   <header class="topo">
     <div class="container">
-      <a class="logo" href="/"><Logo /><span>{SITE.nome}<span class="sub">{SITE.subtitulo}</span>{SITE.creci && <small>CRECI {SITE.creci}</small>}</span></a>
+      <a class="logo" href="/"><Logo /><span>{SITE.nome}<span class="sub">{SITE.subtitulo}</span></span></a>
       <nav class="menu" aria-label="Principal">
         <a href="/" aria-current={ativo('/')}>Início</a>
         <a href="/imoveis/" aria-current={ativo('/imoveis')}>Imóveis</a>
@@ -45,14 +45,19 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
       <div>
         <h3>{SITE.marca}</h3>
         <p>{SITE.descricao}</p>
-        {SITE.creci && <p class="creci">Corretor de imóveis – CRECI {SITE.creci}</p>}
       </div>
       <div>
-        <h3>Fale comigo</h3>
-        <p><a href={waLink('Olá, Alex! Vim pelo site.')}>WhatsApp</a><br />
-        {SITE.email && <><a href={`mailto:${SITE.email}`}>{SITE.email}</a><br /></>}
-        <a href={`https://instagram.com/${SITE.instagram}`}>@{SITE.instagram}</a></p>
+        <h3>Corretores</h3>
+        {CORRETORES.map((c) => (
+          <p class="corretor-rodape">{c.nome}<br />
+          {c.creci && <><span class="creci">CRECI {c.creci}</span><br /></>}
+          {c.whatsapp && <a href={waLink(`Olá, ${primeiroNome(c)}! Vim pelo site.`, c)}>WhatsApp</a>}</p>
+        ))}
       </div>
+      <div>
+        <h3>Fale com a gente</h3>
+        <p>{SITE.email && <><a href={`mailto:${SITE.email}`}>{SITE.email}</a><br /></>}
+        <a href={`https://instagram.com/${SITE.instagram}`}>@{SITE.instagram}</a></p>
       <div>
         <h3>Atendimento</h3>
         <p>{SITE.cidade} e região<br />Segunda a sábado, com hora marcada</p>
@@ -60,6 +65,6 @@ const ativo = (p: string) => (p === '/' ? caminho === '/' : caminho.startsWith(p
       <p class="final">© {new Date().getFullYear()} {SITE.marca}. Valores e disponibilidade sujeitos a alteração sem aviso prévio.</p>
     </div>
   </footer>
-  <a class="whats-fixo" href={waLink('Olá, Alex! Vim pelo site.')} aria-label="Conversar no WhatsApp"><WhatsIcon /></a>
+  <a class="whats-fixo" href={waLink('Olá! Vim pelo site.')} aria-label="Conversar no WhatsApp"><WhatsIcon /></a>
 </body>
 </html>
