@@ -1,4 +1,4 @@
-# Alex Oliveira & Giselly Oliveira – Corretores de Imóveis – site
+# Oliveira's Negócios Imobiliários – site
 
 Site estático (Astro) + painel para cadastrar imóveis (Decap CMS).
 Custo: só o domínio (~R$ 40/ano no Registro.br). Hospedagem grátis na Netlify.

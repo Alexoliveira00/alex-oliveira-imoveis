@@ -40,9 +40,8 @@ collections:
       - label: Corretor responsável
         name: corretor
         widget: select
-        default: alex
-        options:   # mesmos ids de CORRETORES em src/config.ts
-          - { label: Alex Oliveira, value: alex }
+        default: giselly
+        options:   # mesmos ids de CORRETORES em src/config.ts (Alex volta quando o CRECI sair)
           - { label: Giselly Oliveira, value: giselly }
       - { label: Data do anúncio, name: data, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
       - { label: Descrição, name: body, widget: markdown }

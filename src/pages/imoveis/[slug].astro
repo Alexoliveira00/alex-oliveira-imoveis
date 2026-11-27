@@ -14,7 +14,9 @@ const { Content } = await render(imovel);
 const fotos = [d.capa, ...d.fotos];
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const corretor = corretorPorId(d.corretor);
-const msg = `Olá, ${primeiroNome(corretor)}! Tenho interesse no imóvel "${d.titulo}" (${d.bairro}). ${url}`;
+// Corretor sem WhatsApp próprio: o botão vai para o WhatsApp da empresa, então a saudação é neutra.
+const temWhats = Boolean(corretor.whatsapp);
+const msg = `${temWhats ? `Olá, ${primeiroNome(corretor)}!` : 'Olá!'} Tenho interesse no imóvel "${d.titulo}" (${d.bairro}). ${url}`;
 const ficha = [
   ['Tipo', d.tipo], ['Área', `${d.area} m²`],
   d.quartos ? ['Quartos', d.quartos] : null,
@@ -51,7 +53,7 @@ const ficha = [
           <p class="corretor-nome">{corretor.nome}</p>
           {corretor.creci && <p class="corretor-creci">CRECI {corretor.creci}</p>}
         </div>
-        {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg, corretor)}><WhatsIcon /> Falar com {primeiroNome(corretor)}</a>}
+        {d.disponivel && <a class="btn btn-whats largo" href={waLink(msg, corretor)}><WhatsIcon /> {temWhats ? `Falar com ${primeiroNome(corretor)}` : 'Quero saber mais'}</a>}
       </aside>
     </div>
     <div class="descricao"><h2>Sobre o imóvel</h2><Content /></div>

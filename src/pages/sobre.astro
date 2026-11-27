@@ -5,30 +5,35 @@ import { SITE, CORRETORES, waLink, primeiroNome } from '../config';
 ---
 <Base titulo="Sobre">
   <section class="container sobre">
-    <img class="logo-completa" src="/logo-completa.jpg" alt={`${SITE.marca} – Corretores de Imóveis`} width="1400" height="870" />
+    <img class="logo-completa" src="/logo-oliveiras.png" alt={SITE.marca} width="1200" height="630" />
     <h1>Sobre nós</h1>
-    <p>Somos {CORRETORES.map((c) => c.nome).join(' e ')}, corretores de imóveis em {SITE.cidade} e região.</p>
+    <p>A {SITE.marca} atende {SITE.cidade} e região.</p>
     <p>Negócio bom é aquele em que as duas partes saem satisfeitas. É assim que conduzimos cada compra, venda e locação: com transparência nos valores, documentação conferida e resposta rápida.</p>
     <p>Atendemos quem quer comprar, vender ou alugar casas, apartamentos, terrenos e imóveis comerciais.</p>
+    <h2 class="equipe-titulo">{CORRETORES.length > 1 ? 'Corretores' : 'Responsável'}</h2>
     <div class="equipe">
       {CORRETORES.map((c) => (
         <div class="pessoa">
-          <h2>{c.nome}</h2>
+          <h3>{c.nome}</h3>
           {c.creci && <p class="creci">CRECI {c.creci}</p>}
           {'bio' in c && c.bio && <p>{c.bio}</p>}
           {c.whatsapp && <a class="btn btn-whats" href={waLink(`Olá, ${primeiroNome(c)}! Vim pela página Sobre do site.`, c)}><WhatsIcon /> Falar com {primeiroNome(c)}</a>}
         </div>
       ))}
     </div>
+    <a class="btn btn-whats contato" href={waLink('Olá! Vim pela página Sobre do site.')}><WhatsIcon /> Conversar no WhatsApp</a>
   </section>
 </Base>
 <style>
   .sobre { padding-top: 3rem; max-width: 880px; }
   .sobre > p { font-size: 1.1rem; max-width: 720px; }
   .logo-completa { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 0 2rem; }
-  .equipe { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); margin-top: 2rem; }
+  .equipe-titulo { font-size: 1.3rem; margin: 2.2rem 0 1rem; }
+  .equipe { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
   .pessoa { background: var(--superficie); border: 1px solid var(--linha); border-top: 4px solid var(--dourado); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; }
-  .pessoa h2 { font-size: 1.4rem; margin: 0 0 .3rem; }
-  .pessoa .creci { color: var(--texto-suave); font-size: .9rem; margin: 0 0 .6rem; }
+  .pessoa h3 { font-size: 1.4rem; margin: 0 0 .3rem; }
+  .pessoa p { margin: 0 0 .6rem; }
+  .pessoa .creci { color: var(--texto-suave); font-size: .9rem; }
   .pessoa .btn { margin-top: auto; align-self: flex-start; }
+  .contato { margin-top: 2rem; }
 </style>
